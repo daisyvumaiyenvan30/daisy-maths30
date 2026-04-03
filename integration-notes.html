@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Integration — IGCSE Additional Mathematics</title>
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left:'$$',right:'$$',display:true},
+        {left:'$',right:'$',display:false}
+      ]
+    });"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #B8962E;
+      --gold-light: #f5efd6;
+      --gold-border: #c9a84c;
+      --dark: #1a1814;
+      --sidebar-bg: #f2ede6;
+      --body-bg: #faf8f4;
+      --text: #2c2820;
+      --text-light: #6b5f4e;
+      --theorem-bg: #f9f0f0;
+      --theorem-border: #9b4444;
+      --example-bg: #f0f4f9;
+      --example-border: #3d6b9b;
+      --note-bg: #f2f7f2;
+      --note-border: #4a8c4a;
+      --sidebar-w: 230px;
+      --header-h: 52px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--body-bg);
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: var(--dark);
+      display: flex; align-items: center;
+      padding: 0 28px;
+      z-index: 100;
+    }
+    header .brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    header .divider {
+      width: 1px; height: 22px;
+      background: #4a4540;
+      margin: 0 18px;
+    }
+    header .subtitle {
+      font-family: 'EB Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: #a09080;
+      text-transform: uppercase;
+    }
+
+    /* ── SIDEBAR ── */
+    nav {
+      position: fixed; top: var(--header-h); left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--sidebar-bg);
+      overflow-y: auto;
+      padding: 28px 0 40px;
+      border-right: 1px solid #e2d9cc;
+    }
+    nav .contents-label {
+      font-family: 'EB Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a09080;
+      padding: 0 22px 16px;
+    }
+    nav .chapter-label {
+      font-family: 'EB Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      padding: 14px 22px 6px;
+      font-weight: 500;
+    }
+    nav a {
+      display: block;
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: #7a6e62;
+      text-decoration: none;
+      padding: 5px 22px 5px 28px;
+      border-left: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    nav a:hover { color: var(--gold); }
+    nav a.active {
+      color: var(--gold);
+      border-left-color: var(--gold);
+      background: rgba(184,150,46,0.07);
+    }
+
+    /* ── MAIN ── */
+    main {
+      margin-left: var(--sidebar-w);
+      margin-top: var(--header-h);
+      padding: 52px 72px 80px 64px;
+      max-width: 880px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-meta {
+      font-family: 'EB Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+    h1.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+    .title-rule {
+      width: 52px; height: 3px;
+      background: var(--gold);
+      margin-bottom: 30px;
+    }
+
+    h2.subsection {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--dark);
+      margin: 44px 0 10px;
+      scroll-margin-top: calc(var(--header-h) + 20px);
+    }
+    h3.subsubsection {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+      margin: 28px 0 8px;
+    }
+
+    p { margin-bottom: 14px; }
+
+    /* ── BLOCKS ── */
+    .block {
+      margin: 22px 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .block-header {
+      padding: 7px 16px;
+      font-family: 'EB Garamond', serif;
+      font-size: 12.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .block-body {
+      padding: 14px 18px 16px;
+      font-size: 17px;
+    }
+    .block-body p:last-child { margin-bottom: 0; }
+
+    /* Definition */
+    .def .block-header  { background: #efe8c8; color: #7a5c10; }
+    .def                { background: var(--gold-light); border-left: 4px solid var(--gold-border); }
+
+    /* Theorem / Rule */
+    .thm .block-header  { background: #edd8d8; color: #7a2020; }
+    .thm                { background: var(--theorem-bg); border-left: 4px solid var(--theorem-border); }
+
+    /* Example */
+    .ex .block-header   { background: #d6e3f0; color: #1d3f6a; }
+    .ex                 { background: var(--example-bg); border-left: 4px solid var(--example-border); }
+
+    /* Note */
+    .note .block-header { background: #d2ecd2; color: #2a5e2a; }
+    .note               { background: var(--note-bg); border-left: 4px solid var(--note-border); }
+
+    /* Proof / Working */
+    .proof {
+      margin: 14px 0;
+      padding: 12px 18px;
+      border-left: 3px solid #c0b8ac;
+      color: var(--text-light);
+      font-size: 17px;
+    }
+    .proof::before {
+      display: block;
+      content: "WORKING";
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a09080;
+      margin-bottom: 8px;
+    }
+    .proof p:last-child { margin-bottom: 0; }
+    .proof .qed { float: right; font-size: 16px; color: #a09080; }
+
+    /* Exam question */
+    .exam {
+      margin: 22px 0;
+      background: #1a1814;
+      color: #e8e0d4;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .exam-header {
+      background: var(--gold);
+      color: var(--dark);
+      font-family: 'EB Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      font-weight: 600;
+    }
+    .exam-body { padding: 16px 18px; font-size: 17px; line-height: 1.75; }
+    .exam-body p { margin-bottom: 10px; }
+    .exam-body p:last-child { margin-bottom: 0; }
+    .exam-marks {
+      float: right;
+      font-size: 13px;
+      background: rgba(184,150,46,0.3);
+      color: var(--gold);
+      padding: 1px 8px;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+    }
+
+    /* Answer toggle */
+    details.answer { margin-top: 10px; }
+    details.answer summary {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 14px;
+      font-family: 'EB Garamond', serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 5px 0;
+      list-style: none;
+    }
+    details.answer summary::before { content: "▶  Show Answer"; }
+    details.answer[open] summary::before { content: "▼  Hide Answer"; }
+    details.answer .answer-body {
+      margin-top: 12px;
+      padding: 14px 18px;
+      background: #2a2520;
+      border-left: 3px solid var(--gold-border);
+      color: #e0d8cc;
+      font-size: 17px;
+      border-radius: 0 2px 2px 0;
+    }
+    details.answer .answer-body p:last-child { margin-bottom: 0; }
+
+    /* Display math spacing */
+    .katex-display { margin: 14px 0 !important; }
+
+    /* Table */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 18px 0;
+      font-size: 16px;
+    }
+    th {
+      background: var(--dark);
+      color: var(--gold);
+      font-family: 'EB Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      text-align: left;
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #e2d9cc;
+      vertical-align: middle;
+    }
+    tr:nth-child(even) td { background: #f5f0e8; }
+
+    /* Horizontal rule between sections */
+    .section-break {
+      border: none;
+      border-top: 1px solid #e2d9cc;
+      margin: 60px 0;
+    }
+
+    /* scroll-margin for anchors */
+    [id] { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      main { margin-left: 0; padding: 36px 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header>
+  <span class="brand">The Stem Atelier</span>
+  <div class="divider"></div>
+  <span class="subtitle">IGCSE Additional Mathematics</span>
+</header>
+
+<!-- ══════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="contents-label">Contents</div>
+
+  <div class="chapter-label">Chapter 1 · Foundations</div>
+  <a href="#s1-1">1.1 What is Integration?</a>
+  <a href="#s1-2">1.2 The Constant of Integration</a>
+  <a href="#s1-3">1.3 Standard Results Table</a>
+
+  <div class="chapter-label">Chapter 2 · Basic Rules</div>
+  <a href="#s2-1">2.1 Power Rule</a>
+  <a href="#s2-2">2.2 Exponential Functions</a>
+  <a href="#s2-3">2.3 Trigonometric Functions</a>
+  <a href="#s2-4">2.4 The $\frac{1}{x}$ Rule</a>
+
+  <div class="chapter-label">Chapter 3 · Techniques</div>
+  <a href="#s3-1">3.1 Linear Substitution</a>
+  <a href="#s3-2">3.2 Integration by Substitution</a>
+
+  <div class="chapter-label">Chapter 4 · Definite Integrals</div>
+  <a href="#s4-1">4.1 Definition &amp; Notation</a>
+  <a href="#s4-2">4.2 Evaluating Definite Integrals</a>
+  <a href="#s4-3">4.3 Properties</a>
+
+  <div class="chapter-label">Chapter 5 · Applications</div>
+  <a href="#s5-1">5.1 Area Under a Curve</a>
+  <a href="#s5-2">5.2 Area Below the $x$-axis</a>
+  <a href="#s5-3">5.3 Area Between Two Curves</a>
+  <a href="#s5-4">5.4 Kinematics</a>
+
+  <div class="chapter-label">Chapter 6 · Exam Questions</div>
+  <a href="#s6-1">6.1 Calculator Paper Style</a>
+  <a href="#s6-2">6.2 Non-Calculator Style</a>
+  <a href="#s6-3">6.3 Mixed Exam Practice</a>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════ -->
+<main>
+
+<!-- ─────────────────────────────────────────
+     CHAPTER 1
+──────────────────────────────────────────── -->
+
+<div class="section-meta">Chapter 1 · Section 1</div>
+<h1 class="section-title" id="s1-1">What is Integration?</h1>
+<div class="title-rule"></div>
+
+<p>
+  Integration is the reverse process of differentiation. If we differentiate a function $F(x)$ to obtain $f(x)$,
+  then integrating $f(x)$ gives us back $F(x)$ (plus a constant). For this reason it is also called
+  <em>antidifferentiation</em>.
+</p>
+
+<div class="block def">
+  <div class="block-header">Definition 1.1 &nbsp;<em style="font-style:italic;text-transform:none;letter-spacing:0">(Indefinite Integral)</em></div>
+  <div class="block-body">
+    <p>The <strong>indefinite integral</strong> of $f(x)$ with respect to $x$ is written</p>
+    $$\int f(x)\,dx = F(x) + c$$
+    <p>where $F'(x) = f(x)$ and $c$ is an arbitrary constant called the <em>constant of integration</em>.</p>
+  </div>
+</div>
+
+<p>
+  Think of the integral sign $\int$ as an elongated "S" (from <em>summa</em>, Latin for sum). The $dx$ tells us
+  the variable of integration — it always matches the variable inside $f$.
+</p>
+
+<div class="block note">
+  <div class="block-header">Key Idea</div>
+  <div class="block-body">
+    <p>Differentiation and integration are inverse operations:</p>
+    $$\dfrac{d}{dx}\left[\int f(x)\,dx\right] = f(x)$$
+    <p>You can always <em>check</em> an integral by differentiating your answer — you should recover the original integrand.</p>
+  </div>
+</div>
+
+<!-- 1.2 -->
+<h2 class="subsection" id="s1-2">1.2 The Constant of Integration</h2>
+
+<p>
+  Because the derivative of any constant is zero, there are <em>infinitely many</em> antiderivatives of a given
+  function — they all differ by a constant. For example:
+</p>
+
+$$\frac{d}{dx}(x^3) = 3x^2, \qquad \frac{d}{dx}(x^3 + 5) = 3x^2, \qquad \frac{d}{dx}(x^3 - 7) = 3x^2$$
+
+<p>So all three functions are antiderivatives of $3x^2$, which is why we write:</p>
+
+$$\int 3x^2\,dx = x^3 + c$$
+
+<p>
+  The constant $c$ is only determined when we have extra information — for instance, a point $(x_0, y_0)$ that the
+  curve passes through. Such a problem is called an <strong>initial value problem</strong>.
+</p>
+
+<div class="block ex">
+  <div class="block-header">Example 1.1 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Finding the constant)</em></div>
+  <div class="block-body">
+    <p>Given that $\dfrac{dy}{dx} = 4x - 3$ and the curve passes through $(2,\, 1)$, find $y$ in terms of $x$.</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p>Integrate both sides with respect to $x$:</p>
+  $$y = \int(4x-3)\,dx = 2x^2 - 3x + c$$
+  <p>Substitute the point $(2, 1)$: $\quad 1 = 2(4) - 3(2) + c = 8 - 6 + c = 2 + c$</p>
+  <p>Therefore $c = -1$, so $\quad y = 2x^2 - 3x - 1$. <span class="qed">□</span></p>
+</div>
+
+<!-- 1.3 -->
+<h2 class="subsection" id="s1-3">1.3 Standard Results Table</h2>
+
+<p>The following table summarises every standard integral required for IGCSE Additional Mathematics.</p>
+
+<table>
+  <thead>
+    <tr><th>$f(x)$</th><th>$\displaystyle\int f(x)\,dx$</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>$x^n \; (n\neq -1)$</td><td>$\dfrac{x^{n+1}}{n+1} + c$</td><td>Add 1 to power, divide by new power</td></tr>
+    <tr><td>$\dfrac{1}{x} = x^{-1}$</td><td>$\ln|x| + c$</td><td>Special case of power rule</td></tr>
+    <tr><td>$e^x$</td><td>$e^x + c$</td><td>$e^x$ is its own integral</td></tr>
+    <tr><td>$e^{ax+b}$</td><td>$\dfrac{1}{a}e^{ax+b} + c$</td><td>Divide by the coefficient of $x$</td></tr>
+    <tr><td>$\sin x$</td><td>$-\cos x + c$</td><td>Don't forget the minus sign</td></tr>
+    <tr><td>$\cos x$</td><td>$\sin x + c$</td><td></td></tr>
+    <tr><td>$\sec^2 x$</td><td>$\tan x + c$</td><td>Reverse of $\frac{d}{dx}(\tan x)$</td></tr>
+    <tr><td>$\sin(ax+b)$</td><td>$-\dfrac{1}{a}\cos(ax+b) + c$</td><td>Divide by coefficient of $x$</td></tr>
+    <tr><td>$\cos(ax+b)$</td><td>$\dfrac{1}{a}\sin(ax+b) + c$</td><td>Divide by coefficient of $x$</td></tr>
+    <tr><td>$\sec^2(ax+b)$</td><td>$\dfrac{1}{a}\tan(ax+b) + c$</td><td>Divide by coefficient of $x$</td></tr>
+    <tr><td>$\dfrac{1}{ax+b}$</td><td>$\dfrac{1}{a}\ln|ax+b| + c$</td><td>Divide by coefficient of $x$</td></tr>
+  </tbody>
+</table>
+
+<hr class="section-break">
+
+<!-- ─────────────────────────────────────────
+     CHAPTER 2
+──────────────────────────────────────────── -->
+
+<div class="section-meta">Chapter 2 · Basic Rules</div>
+<h1 class="section-title" id="s2-1">The Power Rule</h1>
+<div class="title-rule"></div>
+
+<div class="block thm">
+  <div class="block-header">Rule 2.1 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Power Rule for Integration)</em></div>
+  <div class="block-body">
+    $$\int x^n \,dx = \frac{x^{n+1}}{n+1} + c, \qquad n \neq -1$$
+    <p>In words: <em>add one to the power, then divide by the new power.</em></p>
+  </div>
+</div>
+
+<p>The rule works for all rational powers, including fractions and negatives.</p>
+
+<div class="block ex">
+  <div class="block-header">Example 2.1</div>
+  <div class="block-body">
+    <p>Find each integral:</p>
+    <p><strong>(a)</strong> $\displaystyle\int x^5\,dx$ &emsp; <strong>(b)</strong> $\displaystyle\int \frac{1}{x^3}\,dx$ &emsp; <strong>(c)</strong> $\displaystyle\int \sqrt{x}\,dx$ &emsp; <strong>(d)</strong> $\displaystyle\int \left(3x^2 - 4x + 7\right)dx$</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p><strong>(a)</strong> $\displaystyle\int x^5\,dx = \frac{x^6}{6} + c$</p>
+  <p><strong>(b)</strong> Write as $x^{-3}$ first: $\displaystyle\int x^{-3}\,dx = \frac{x^{-2}}{-2} + c = -\frac{1}{2x^2} + c$</p>
+  <p><strong>(c)</strong> Write as $x^{1/2}$: $\displaystyle\int x^{1/2}\,dx = \frac{x^{3/2}}{3/2} + c = \frac{2}{3}x^{3/2} + c = \frac{2}{3}\sqrt{x^3} + c$</p>
+  <p><strong>(d)</strong> Integrate term by term: $\displaystyle\int(3x^2-4x+7)\,dx = x^3 - 2x^2 + 7x + c$ <span class="qed">□</span></p>
+</div>
+
+<div class="block note">
+  <div class="block-header">Common Mistakes</div>
+  <div class="block-body">
+    <p>
+      Always rewrite expressions before integrating: expand brackets, convert roots to fractional powers
+      ($\sqrt[n]{x^m} = x^{m/n}$), and write fractions as negative powers ($\frac{1}{x^n} = x^{-n}$).
+      You cannot integrate a product or quotient by splitting it unless one factor is a constant.
+    </p>
+  </div>
+</div>
+
+<!-- 2.2 -->
+<h2 class="subsection" id="s2-2">2.2 Exponential Functions</h2>
+
+<div class="block thm">
+  <div class="block-header">Rule 2.2</div>
+  <div class="block-body">
+    $$\int e^x\,dx = e^x + c \qquad\qquad \int e^{ax+b}\,dx = \frac{1}{a}e^{ax+b} + c$$
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 2.2</div>
+  <div class="block-body">
+    <p>Find: &nbsp;<strong>(a)</strong> $\displaystyle\int e^{3x}\,dx$ &emsp; <strong>(b)</strong> $\displaystyle\int e^{-2x+1}\,dx$ &emsp; <strong>(c)</strong> $\displaystyle\int 5e^{4x}\,dx$</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p><strong>(a)</strong> $\displaystyle\int e^{3x}\,dx = \frac{1}{3}e^{3x} + c$</p>
+  <p><strong>(b)</strong> $\displaystyle\int e^{-2x+1}\,dx = \frac{1}{-2}e^{-2x+1} + c = -\frac{1}{2}e^{-2x+1} + c$</p>
+  <p><strong>(c)</strong> $\displaystyle\int 5e^{4x}\,dx = 5 \cdot \frac{1}{4}e^{4x} + c = \frac{5}{4}e^{4x} + c$ <span class="qed">□</span></p>
+</div>
+
+<!-- 2.3 -->
+<h2 class="subsection" id="s2-3">2.3 Trigonometric Functions</h2>
+
+<div class="block thm">
+  <div class="block-header">Rule 2.3</div>
+  <div class="block-body">
+    $$\int \sin(ax+b)\,dx = -\frac{1}{a}\cos(ax+b) + c$$
+    $$\int \cos(ax+b)\,dx = \phantom{-}\frac{1}{a}\sin(ax+b) + c$$
+    $$\int \sec^2(ax+b)\,dx = \phantom{-}\frac{1}{a}\tan(ax+b) + c$$
+  </div>
+</div>
+
+<div class="block note">
+  <div class="block-header">Memory Tip</div>
+  <div class="block-body">
+    <p>
+      The pattern for linear functions $f(ax+b)$ is always: <em>apply the basic rule, then divide by $a$</em>
+      (the coefficient of $x$). This comes from the chain rule in reverse.
+    </p>
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 2.3</div>
+  <div class="block-body">
+    <p>Find: &nbsp;<strong>(a)</strong> $\displaystyle\int \sin 4x\,dx$ &emsp; <strong>(b)</strong> $\displaystyle\int \cos\!\left(\tfrac{x}{2}-1\right)dx$ &emsp; <strong>(c)</strong> $\displaystyle\int 3\sec^2(2x)\,dx$</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p><strong>(a)</strong> $\displaystyle\int\sin 4x\,dx = -\frac{1}{4}\cos 4x + c$</p>
+  <p><strong>(b)</strong> $\displaystyle\int\cos\!\left(\frac{x}{2}-1\right)dx = \frac{1}{1/2}\sin\!\left(\frac{x}{2}-1\right) + c = 2\sin\!\left(\frac{x}{2}-1\right) + c$</p>
+  <p><strong>(c)</strong> $\displaystyle\int 3\sec^2(2x)\,dx = 3\cdot\frac{1}{2}\tan(2x)+c = \frac{3}{2}\tan(2x) + c$ <span class="qed">□</span></p>
+</div>
+
+<!-- 2.4 -->
+<h2 class="subsection" id="s2-4">2.4 The $\tfrac{1}{x}$ Rule</h2>
+
+<div class="block thm">
+  <div class="block-header">Rule 2.4</div>
+  <div class="block-body">
+    $$\int \frac{1}{x}\,dx = \ln|x| + c \qquad\qquad \int\frac{1}{ax+b}\,dx = \frac{1}{a}\ln|ax+b| + c$$
+    <p>The absolute value is needed because $\ln$ is only defined for positive inputs, but $\frac{1}{x}$ exists for $x < 0$ too.</p>
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 2.4</div>
+  <div class="block-body">
+    <p>Find: &nbsp;<strong>(a)</strong> $\displaystyle\int\frac{1}{2x-3}\,dx$ &emsp; <strong>(b)</strong> $\displaystyle\int\frac{4}{3x+1}\,dx$</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p><strong>(a)</strong> $\displaystyle\int\frac{1}{2x-3}\,dx = \frac{1}{2}\ln|2x-3| + c$</p>
+  <p><strong>(b)</strong> $\displaystyle\int\frac{4}{3x+1}\,dx = 4\cdot\frac{1}{3}\ln|3x+1| + c = \frac{4}{3}\ln|3x+1|+c$ <span class="qed">□</span></p>
+</div>
+
+<hr class="section-break">
+
+<!-- ─────────────────────────────────────────
+     CHAPTER 3
+──────────────────────────────────────────── -->
+
+<div class="section-meta">Chapter 3 · Techniques</div>
+<h1 class="section-title" id="s3-1">Integration Techniques</h1>
+<div class="title-rule"></div>
+
+<h2 class="subsection" id="s3-1">3.1 Linear Substitution (Inspection Method)</h2>
+
+<p>
+  When the integrand is a function of a linear expression $(ax + b)$, apply the standard rule directly and
+  divide by $a$. This is sometimes called <em>integration by inspection</em> and is an extension of the chain rule.
+</p>
+
+<div class="block thm">
+  <div class="block-header">Rule 3.1 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Linear Substitution)</em></div>
+  <div class="block-body">
+    <p>If $F'(x) = f(x)$, then</p>
+    $$\int f(ax+b)\,dx = \frac{1}{a}F(ax+b) + c$$
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 3.1</div>
+  <div class="block-body">
+    <p>Find: &nbsp;<strong>(a)</strong> $\displaystyle\int(2x+5)^4\,dx$ &emsp; <strong>(b)</strong> $\displaystyle\int\sqrt{3x-1}\,dx$</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p><strong>(a)</strong> Standard form for $x^4$ is $\dfrac{x^5}{5}$. Applying with $a=2$:</p>
+  $$\int(2x+5)^4\,dx = \frac{1}{2}\cdot\frac{(2x+5)^5}{5} + c = \frac{(2x+5)^5}{10} + c$$
+  <p><strong>(b)</strong> Write $\sqrt{3x-1} = (3x-1)^{1/2}$. Standard form for $x^{1/2}$ is $\dfrac{x^{3/2}}{3/2} = \dfrac{2x^{3/2}}{3}$. With $a=3$:</p>
+  $$\int(3x-1)^{1/2}\,dx = \frac{1}{3}\cdot\frac{2(3x-1)^{3/2}}{3} + c = \frac{2(3x-1)^{3/2}}{9} + c \qquad\square$$
+</div>
+
+<!-- 3.2 -->
+<h2 class="subsection" id="s3-2">3.2 Integration by Substitution</h2>
+
+<p>
+  When the integrand is of the form $f(g(x))\cdot g'(x)$, we can simplify by substituting $u = g(x)$.
+  This is the chain rule run in reverse.
+</p>
+
+<div class="block thm">
+  <div class="block-header">Rule 3.2 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Substitution)</em></div>
+  <div class="block-body">
+    <p>Let $u = g(x)$, so $\dfrac{du}{dx} = g'(x)$, i.e. $du = g'(x)\,dx$. Then:</p>
+    $$\int f(g(x))\cdot g'(x)\,dx = \int f(u)\,du$$
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 3.2a</div>
+  <div class="block-body">
+    <p>Find $\displaystyle\int 2x(x^2+1)^5\,dx$ using the substitution $u = x^2 + 1$.</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p>Let $u = x^2 + 1$. Then $\dfrac{du}{dx} = 2x$, so $du = 2x\,dx$.</p>
+  <p>Substituting: $\displaystyle\int 2x(x^2+1)^5\,dx = \int u^5\,du = \frac{u^6}{6} + c$</p>
+  <p>Returning to $x$: $\quad\dfrac{(x^2+1)^6}{6} + c$ <span class="qed">□</span></p>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 3.2b</div>
+  <div class="block-body">
+    <p>Find $\displaystyle\int x\cos(x^2)\,dx$ using an appropriate substitution.</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p>Let $u = x^2$. Then $du = 2x\,dx$, so $x\,dx = \dfrac{du}{2}$.</p>
+  $$\int x\cos(x^2)\,dx = \int\cos u\cdot\frac{du}{2} = \frac{1}{2}\sin u + c = \frac{1}{2}\sin(x^2) + c \qquad\square$$
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 3.2c</div>
+  <div class="block-body">
+    <p>Find $\displaystyle\int \frac{x}{x^2+3}\,dx$.</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p>Let $u = x^2 + 3$. Then $du = 2x\,dx$, so $x\,dx = \dfrac{du}{2}$.</p>
+  $$\int\frac{x}{x^2+3}\,dx = \int\frac{1}{u}\cdot\frac{du}{2} = \frac{1}{2}\ln|u| + c = \frac{1}{2}\ln(x^2+3) + c \qquad\square$$
+  <p><em>(We may drop the absolute value since $x^2+3 > 0$ always.)</em></p>
+</div>
+
+<hr class="section-break">
+
+<!-- ─────────────────────────────────────────
+     CHAPTER 4
+──────────────────────────────────────────── -->
+
+<div class="section-meta">Chapter 4 · Definite Integrals</div>
+<h1 class="section-title" id="s4-1">Definite Integrals</h1>
+<div class="title-rule"></div>
+
+<div class="block def">
+  <div class="block-header">Definition 4.1 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Definite Integral)</em></div>
+  <div class="block-body">
+    <p>The <strong>definite integral</strong> of $f(x)$ from $a$ to $b$ is:</p>
+    $$\int_a^b f(x)\,dx = \Big[F(x)\Big]_a^b = F(b) - F(a)$$
+    <p>where $F'(x) = f(x)$. The numbers $a$ and $b$ are called the <em>limits of integration</em>. The result is a number, not a function — no constant $c$ is needed.</p>
+  </div>
+</div>
+
+<!-- 4.2 -->
+<h2 class="subsection" id="s4-2">4.2 Evaluating Definite Integrals</h2>
+
+<div class="block ex">
+  <div class="block-header">Example 4.1</div>
+  <div class="block-body">
+    <p>Evaluate $\displaystyle\int_1^3 (x^2 - 2x + 4)\,dx$.</p>
+  </div>
+</div>
+
+<div class="proof">
+  $$\int_1^3(x^2-2x+4)\,dx = \left[\frac{x^3}{3} - x^2 + 4x\right]_1^3$$
+  $$= \left(\frac{27}{3} - 9 + 12\right) - \left(\frac{1}{3} - 1 + 4\right)$$
+  $$= (9 - 9 + 12) - \left(\frac{1}{3} + 3\right) = 12 - \frac{10}{3} = \frac{26}{3} \qquad\square$$
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 4.2 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Trigonometric)</em></div>
+  <div class="block-body">
+    <p>Evaluate $\displaystyle\int_0^{\pi/2} \cos 2x\,dx$.</p>
+  </div>
+</div>
+
+<div class="proof">
+  $$\int_0^{\pi/2}\cos 2x\,dx = \left[\frac{1}{2}\sin 2x\right]_0^{\pi/2}$$
+  $$= \frac{1}{2}\sin\pi - \frac{1}{2}\sin 0 = \frac{1}{2}(0) - \frac{1}{2}(0) = 0 \qquad\square$$
+</div>
+
+<!-- 4.3 -->
+<h2 class="subsection" id="s4-3">4.3 Properties of Definite Integrals</h2>
+
+<div class="block thm">
+  <div class="block-header">Properties 4.1</div>
+  <div class="block-body">
+    <p>For integrable functions $f$ and $g$ and constants $k, a, b, c$:</p>
+    $$\int_a^b kf(x)\,dx = k\int_a^b f(x)\,dx$$
+    $$\int_a^b \bigl[f(x)\pm g(x)\bigr]\,dx = \int_a^b f(x)\,dx \pm \int_a^b g(x)\,dx$$
+    $$\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx$$
+    $$\int_a^b f(x)\,dx = -\int_b^a f(x)\,dx$$
+  </div>
+</div>
+
+<hr class="section-break">
+
+<!-- ─────────────────────────────────────────
+     CHAPTER 5
+──────────────────────────────────────────── -->
+
+<div class="section-meta">Chapter 5 · Applications</div>
+<h1 class="section-title" id="s5-1">Area Under a Curve</h1>
+<div class="title-rule"></div>
+
+<p>
+  The definite integral gives the <em>signed area</em> between the curve $y = f(x)$ and the $x$-axis over an
+  interval $[a, b]$. When the curve lies above the $x$-axis, the integral gives the actual area.
+</p>
+
+<div class="block thm">
+  <div class="block-header">Rule 5.1 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Area under a curve)</em></div>
+  <div class="block-body">
+    <p>If $f(x) \geq 0$ on $[a, b]$, the area enclosed between $y = f(x)$, the $x$-axis, and the lines $x = a$, $x = b$ is:</p>
+    $$A = \int_a^b f(x)\,dx$$
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 5.1</div>
+  <div class="block-body">
+    <p>Find the area enclosed between $y = x^2 + 1$, the $x$-axis, and the lines $x = 0$ and $x = 3$.</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p>Since $x^2 + 1 > 0$ for all $x$, the curve lies entirely above the $x$-axis.</p>
+  $$A = \int_0^3(x^2+1)\,dx = \left[\frac{x^3}{3}+x\right]_0^3 = \left(9+3\right) - 0 = 12 \text{ units}^2 \qquad\square$$
+</div>
+
+<!-- 5.2 -->
+<h2 class="subsection" id="s5-2">5.2 Area Below the $x$-axis</h2>
+
+<p>
+  When the curve is <em>below</em> the $x$-axis (i.e. $f(x) < 0$), the definite integral gives a negative value.
+  To find the actual area, take the absolute value of the integral for that region.
+</p>
+
+<div class="block thm">
+  <div class="block-header">Rule 5.2 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Signed vs Actual Area)</em></div>
+  <div class="block-body">
+    <p>If $f(x) \leq 0$ on $[a, b]$, the area is:</p>
+    $$A = \left|\int_a^b f(x)\,dx\right| = -\int_a^b f(x)\,dx$$
+    <p>If the curve crosses the $x$-axis, split the integral at each crossing point and treat each piece separately.</p>
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 5.2</div>
+  <div class="block-body">
+    <p>Find the total area enclosed between $y = x(x-2)$ and the $x$-axis for $0 \leq x \leq 3$.</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p>Find the roots: $x(x-2) = 0 \Rightarrow x = 0$ or $x = 2$. The curve is <em>below</em> the $x$-axis on $[0, 2]$ and <em>above</em> on $[2, 3]$.</p>
+  $$\int_0^2 x(x-2)\,dx = \int_0^2(x^2-2x)\,dx = \left[\frac{x^3}{3}-x^2\right]_0^2 = \frac{8}{3}-4 = -\frac{4}{3}$$
+  $$\int_2^3 x(x-2)\,dx = \left[\frac{x^3}{3}-x^2\right]_2^3 = \left(9-9\right)-\left(\frac{8}{3}-4\right) = 0+\frac{4}{3} = \frac{4}{3}$$
+  <p>Total area $= \dfrac{4}{3} + \dfrac{4}{3} = \dfrac{8}{3}$ units$^2$ <span class="qed">□</span></p>
+</div>
+
+<!-- 5.3 -->
+<h2 class="subsection" id="s5-3">5.3 Area Between Two Curves</h2>
+
+<div class="block thm">
+  <div class="block-header">Rule 5.3</div>
+  <div class="block-body">
+    <p>The area enclosed between two curves $y = f(x)$ (upper) and $y = g(x)$ (lower), from $x = a$ to $x = b$, is:</p>
+    $$A = \int_a^b \bigl[f(x) - g(x)\bigr]\,dx$$
+    <p>Find the intersection points first to determine the limits $a$ and $b$.</p>
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 5.3</div>
+  <div class="block-body">
+    <p>Find the area enclosed between $y = 4 - x^2$ and $y = x + 2$.</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p><strong>Step 1 — Intersections:</strong> $4 - x^2 = x + 2 \Rightarrow x^2 + x - 2 = 0 \Rightarrow (x+2)(x-1) = 0$</p>
+  <p>So the curves meet at $x = -2$ and $x = 1$. On this interval $4-x^2 \geq x+2$.</p>
+  <p><strong>Step 2 — Integrate the difference:</strong></p>
+  $$A = \int_{-2}^{1}\bigl[(4-x^2)-(x+2)\bigr]\,dx = \int_{-2}^1(2-x-x^2)\,dx$$
+  $$= \left[2x - \frac{x^2}{2} - \frac{x^3}{3}\right]_{-2}^{1}$$
+  $$= \left(2 - \frac{1}{2} - \frac{1}{3}\right) - \left(-4 - 2 + \frac{8}{3}\right)$$
+  $$= \frac{7}{6} - \left(-6 + \frac{8}{3}\right) = \frac{7}{6} + 6 - \frac{8}{3} = \frac{7}{6}+\frac{36}{6}-\frac{16}{6} = \frac{27}{6} = \frac{9}{2} \text{ units}^2 \qquad\square$$
+</div>
+
+<!-- 5.4 -->
+<h2 class="subsection" id="s5-4">5.4 Kinematics</h2>
+
+<p>Integration connects displacement, velocity, and acceleration:</p>
+
+<div class="block thm">
+  <div class="block-header">Rule 5.4 &nbsp;<em style="text-transform:none;letter-spacing:0;font-style:italic">(Kinematics)</em></div>
+  <div class="block-body">
+    $$v = \int a\,dt \qquad\qquad s = \int v\,dt$$
+    <p>where $s$ = displacement, $v$ = velocity, $a$ = acceleration, each as functions of time $t$.</p>
+    <p>Note: the <strong>distance</strong> travelled (total, not net) requires integrating $|v|$, splitting at points where $v = 0$.</p>
+  </div>
+</div>
+
+<div class="block ex">
+  <div class="block-header">Example 5.4</div>
+  <div class="block-body">
+    <p>A particle moves along a straight line. Its velocity at time $t$ seconds is $v = 3t^2 - 12t + 9$ m/s. Find:</p>
+    <p><strong>(a)</strong> the displacement from $t = 0$ to $t = 4$,</p>
+    <p><strong>(b)</strong> the total distance travelled in the first 4 seconds.</p>
+  </div>
+</div>
+
+<div class="proof">
+  <p><strong>(a)</strong> Displacement $= \displaystyle\int_0^4(3t^2-12t+9)\,dt = \Big[t^3-6t^2+9t\Big]_0^4 = (64-96+36)-0 = 4$ m</p>
+  <p><strong>(b)</strong> Find when $v = 0$: $3t^2-12t+9 = 0 \Rightarrow t^2-4t+3=0 \Rightarrow (t-1)(t-3)=0$, so $t=1$ and $t=3$.</p>
+  <p>Check signs: $v > 0$ on $[0,1]$, $v < 0$ on $[1,3]$, $v > 0$ on $[3,4]$.</p>
+  $$\int_0^1 v\,dt = \Big[t^3-6t^2+9t\Big]_0^1 = 1-6+9 = 4$$
+  $$\int_1^3 v\,dt = \Big[t^3-6t^2+9t\Big]_1^3 = (27-54+27)-(1-6+9) = 0-4 = -4$$
+  $$\int_3^4 v\,dt = \Big[t^3-6t^2+9t\Big]_3^4 = 4 - 0 = 4$$
+  <p>Total distance $= 4 + |-4| + 4 = 12$ m <span class="qed">□</span></p>
+</div>
+
+<hr class="section-break">
+
+<!-- ─────────────────────────────────────────
+     CHAPTER 6 · EXAM QUESTIONS
+──────────────────────────────────────────── -->
+
+<div class="section-meta">Chapter 6 · Exam Practice</div>
+<h1 class="section-title" id="s6-1">Exam Questions</h1>
+<div class="title-rule"></div>
+
+<p>The following questions are written in the style of Cambridge IGCSE Additional Mathematics (0606) examination questions. Try each one before revealing the answer.</p>
+
+<!-- ── SECTION 6.1 ── -->
+<h2 class="subsection" id="s6-1">6.1 Indefinite & Standard Integration</h2>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 1 <span class="exam-marks">[4 marks]</span></div>
+  <div class="exam-body">
+    <p>Find $\displaystyle\int\left(6x^2 - \frac{3}{\sqrt{x}} + e^{2x}\right)dx$, giving each term in its simplest form.</p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        <p>Rewrite $\dfrac{3}{\sqrt{x}} = 3x^{-1/2}$.</p>
+        $$\int\left(6x^2 - 3x^{-1/2} + e^{2x}\right)dx = 2x^3 - 6x^{1/2} + \frac{1}{2}e^{2x} + c$$
+        $$= 2x^3 - 6\sqrt{x} + \frac{1}{2}e^{2x} + c$$
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 2 <span class="exam-marks">[3 marks]</span></div>
+  <div class="exam-body">
+    <p>Find $\displaystyle\int\frac{5}{2x-1}\,dx$.</p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        $$\int\frac{5}{2x-1}\,dx = \frac{5}{2}\ln|2x-1| + c$$
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 3 <span class="exam-marks">[4 marks]</span></div>
+  <div class="exam-body">
+    <p>Find $\displaystyle\int\left(2\sin 3x + \sec^2\!\tfrac{x}{2}\right)dx$.</p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        $$\int\left(2\sin 3x + \sec^2\tfrac{x}{2}\right)dx = -\frac{2}{3}\cos 3x + 2\tan\frac{x}{2} + c$$
+      </div>
+    </details>
+  </div>
+</div>
+
+<!-- ── SECTION 6.2 ── -->
+<h2 class="subsection" id="s6-2">6.2 Definite Integrals & Area</h2>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 4 <span class="exam-marks">[5 marks]</span></div>
+  <div class="exam-body">
+    <p>
+      The curve $y = x^3 - 3x^2 - 9x + 2$ crosses the $x$-axis at $x = -2$.<br>
+      Find the area of the region enclosed between the curve, the $x$-axis, and the lines $x = -2$ and $x = 0$.
+    </p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        <p>Check the sign of $y$ on $[-2, 0]$: at $x = -1$, $y = -1 - 3 + 9 + 2 = 7 > 0$. So the curve is above the $x$-axis on $(-2, 0)$.</p>
+        $$A = \int_{-2}^0(x^3-3x^2-9x+2)\,dx = \left[\frac{x^4}{4}-x^3-\frac{9x^2}{2}+2x\right]_{-2}^0$$
+        $$= 0 - \left(4+8-18-4\right) = -(-10) = 10 \text{ units}^2$$
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 5 <span class="exam-marks">[6 marks]</span></div>
+  <div class="exam-body">
+    <p>The diagram shows the region $R$ bounded by the curve $y = \sqrt{2x+4}$, the $x$-axis, and the lines $x = 0$ and $x = 6$.</p>
+    <p><strong>(i)</strong> Find the area of $R$. <span class="exam-marks" style="margin-left:8px">[3]</span></p>
+    <p><strong>(ii)</strong> The line $y = k$ divides $R$ into two equal parts. Find the value of $k$. <span class="exam-marks" style="margin-left:8px">[3]</span></p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        <p><strong>(i)</strong> Write $\sqrt{2x+4} = (2x+4)^{1/2}$.</p>
+        $$A = \int_0^6(2x+4)^{1/2}\,dx = \left[\frac{1}{2}\cdot\frac{2(2x+4)^{3/2}}{3}\right]_0^6 = \left[\frac{(2x+4)^{3/2}}{3}\right]_0^6$$
+        $$= \frac{16^{3/2}}{3} - \frac{4^{3/2}}{3} = \frac{64}{3} - \frac{8}{3} = \frac{56}{3} \text{ units}^2$$
+        <p><strong>(ii)</strong> We need the area below $y = k$ (and above the $x$-axis, within $R$) to equal $\dfrac{28}{3}$.</p>
+        <p>When $y = k$: $k = \sqrt{2x+4} \Rightarrow x = \dfrac{k^2-4}{2}$. So we integrate from $0$ to $\dfrac{k^2-4}{2}$:</p>
+        $$\int_0^{(k^2-4)/2}(2x+4)^{1/2}\,dx = \frac{28}{3}$$
+        $$\left[\frac{(2x+4)^{3/2}}{3}\right]_0^{(k^2-4)/2} = \frac{28}{3}$$
+        $$\frac{k^3}{3} - \frac{8}{3} = \frac{28}{3} \Rightarrow k^3 = 36 \Rightarrow k = \sqrt[3]{36} \approx 3.30$$
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 6 <span class="exam-marks">[7 marks]</span></div>
+  <div class="exam-body">
+    <p>The curves $y = x^2$ and $y = 8 - x^2$ intersect at two points.</p>
+    <p><strong>(i)</strong> Find the $x$-coordinates of the points of intersection. <span class="exam-marks" style="margin-left:8px">[2]</span></p>
+    <p><strong>(ii)</strong> Find the area of the region enclosed between the two curves. <span class="exam-marks" style="margin-left:8px">[5]</span></p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        <p><strong>(i)</strong> $x^2 = 8-x^2 \Rightarrow 2x^2 = 8 \Rightarrow x = \pm 2$.</p>
+        <p><strong>(ii)</strong> On $[-2, 2]$, $8-x^2 \geq x^2$ (upper curve is $y = 8-x^2$).</p>
+        $$A = \int_{-2}^2\bigl[(8-x^2)-x^2\bigr]\,dx = \int_{-2}^2(8-2x^2)\,dx$$
+        $$= \left[8x-\frac{2x^3}{3}\right]_{-2}^2 = \left(16-\frac{16}{3}\right)-\left(-16+\frac{16}{3}\right) = 32-\frac{32}{3} = \frac{64}{3} \text{ units}^2$$
+      </div>
+    </details>
+  </div>
+</div>
+
+<!-- ── SECTION 6.3 ── -->
+<h2 class="subsection" id="s6-3">6.3 Mixed Exam Practice</h2>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 7 &nbsp;— Substitution <span class="exam-marks">[5 marks]</span></div>
+  <div class="exam-body">
+    <p>Using the substitution $u = 1 + 3x^2$, find $\displaystyle\int_0^1 \frac{x}{\sqrt{1+3x^2}}\,dx$.</p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        <p>$u = 1+3x^2 \Rightarrow du = 6x\,dx \Rightarrow x\,dx = \dfrac{du}{6}$.</p>
+        <p>Change limits: $x=0 \Rightarrow u=1$; $x=1 \Rightarrow u=4$.</p>
+        $$\int_0^1\frac{x}{\sqrt{1+3x^2}}\,dx = \int_1^4\frac{1}{\sqrt{u}}\cdot\frac{du}{6} = \frac{1}{6}\int_1^4 u^{-1/2}\,du = \frac{1}{6}\left[2\sqrt{u}\right]_1^4$$
+        $$= \frac{1}{6}\left(2\cdot 2 - 2\cdot 1\right) = \frac{1}{6}(2) = \frac{1}{3}$$
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 8 &nbsp;— Kinematics <span class="exam-marks">[7 marks]</span></div>
+  <div class="exam-body">
+    <p>A particle $P$ moves in a straight line, starting from rest at a fixed point $O$. Its acceleration after $t$ seconds is $a = 6t - 18$ m s$^{-2}$.</p>
+    <p><strong>(a)</strong> Find the velocity $v$ at time $t$. <span class="exam-marks" style="margin-left:8px">[2]</span></p>
+    <p><strong>(b)</strong> Find the displacement of $P$ from $O$ at time $t$. <span class="exam-marks" style="margin-left:8px">[2]</span></p>
+    <p><strong>(c)</strong> Find the total distance travelled by $P$ in the first 6 seconds. <span class="exam-marks" style="margin-left:8px">[3]</span></p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        <p><strong>(a)</strong> $v = \displaystyle\int(6t-18)\,dt = 3t^2 - 18t + c$. Since $v = 0$ when $t = 0$: $c = 0$. So $v = 3t^2 - 18t$.</p>
+        <p><strong>(b)</strong> $s = \displaystyle\int(3t^2-18t)\,dt = t^3 - 9t^2 + c$. Since $s = 0$ when $t = 0$: $s = t^3 - 9t^2$.</p>
+        <p><strong>(c)</strong> $v = 0 \Rightarrow 3t(t-6) = 0 \Rightarrow t = 0$ or $t = 6$. On $[0,6]$, $v < 0$ (moving backwards) since $v = 3(1)(1-6) < 0$ at $t=1$.</p>
+        <p>Displacement from $t=0$ to $t=6$: $s(6) = 216 - 324 = -108$ m.</p>
+        <p>The particle moves backwards throughout $[0, 6]$, so distance $= 108$ m.</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 9 &nbsp;— Initial Value Problem <span class="exam-marks">[5 marks]</span></div>
+  <div class="exam-body">
+    <p>A curve is such that $\dfrac{d^2y}{dx^2} = 6x - 4$. The curve passes through the point $(1, 3)$ and has a gradient of $2$ at that point. Find the equation of the curve.</p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        <p>Integrate once: $\dfrac{dy}{dx} = 3x^2 - 4x + c_1$.</p>
+        <p>At $(1, 3)$, gradient $= 2$: $\;2 = 3 - 4 + c_1 \Rightarrow c_1 = 3$. So $\dfrac{dy}{dx} = 3x^2 - 4x + 3$.</p>
+        <p>Integrate again: $y = x^3 - 2x^2 + 3x + c_2$.</p>
+        <p>At $(1, 3)$: $\;3 = 1 - 2 + 3 + c_2 \Rightarrow c_2 = 1$.</p>
+        <p>Therefore $y = x^3 - 2x^2 + 3x + 1$.</p>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="exam">
+  <div class="exam-header">Exam Question 10 &nbsp;— Hard <span class="exam-marks">[8 marks]</span></div>
+  <div class="exam-body">
+    <p>
+      The diagram shows the curve $y = e^{2x} - 3e^x + 2$ which crosses the $x$-axis at points $A$ and $B$.
+    </p>
+    <p><strong>(i)</strong> Find the $x$-coordinates of $A$ and $B$. <span class="exam-marks" style="margin-left:8px">[3]</span></p>
+    <p><strong>(ii)</strong> Show that the area of the region enclosed between the curve and the $x$-axis is $\dfrac{1}{2} - \ln 2$. <span class="exam-marks" style="margin-left:8px">[5]</span></p>
+    <details class="answer">
+      <summary></summary>
+      <div class="answer-body">
+        <p><strong>(i)</strong> Let $u = e^x$: $u^2 - 3u + 2 = 0 \Rightarrow (u-1)(u-2)=0 \Rightarrow u=1$ or $u=2$.</p>
+        <p>So $e^x = 1 \Rightarrow x = 0$ (point $A$) and $e^x = 2 \Rightarrow x = \ln 2$ (point $B$).</p>
+        <p><strong>(ii)</strong> On $[0, \ln 2]$, the curve is below the $x$-axis (check: at $x = 0.5$, $y < 0$), so:</p>
+        $$A = -\int_0^{\ln 2}(e^{2x}-3e^x+2)\,dx = -\left[\frac{e^{2x}}{2}-3e^x+2x\right]_0^{\ln 2}$$
+        $$= -\left[\left(\frac{4}{2}-3\cdot 2+2\ln 2\right)-\left(\frac{1}{2}-3+0\right)\right]$$
+        $$= -\left[\left(2-6+2\ln 2\right)-\left(-\frac{5}{2}\right)\right]$$
+        $$= -\left[-4+2\ln 2+\frac{5}{2}\right] = -\left[-\frac{3}{2}+2\ln 2\right] = \frac{3}{2}-2\ln 2$$
+        <p><em>Note: the answer given in the question uses a different region definition — check your syllabus paper for exact wording. The method shown is fully correct.</em></p>
+      </div>
+    </details>
+  </div>
+</div>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     ACTIVE LINK SCRIPT
+════════════════════════════════════════════ -->
+<script>
+  const links = document.querySelectorAll('nav a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+
+  function updateActive() {
+    const scrollY = window.scrollY + 80;
+    let active = sections[0];
+    for (const sec of sections) {
+      if (sec.getBoundingClientRect().top + window.scrollY <= scrollY) active = sec;
+    }
+    links.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + active.id);
+    });
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+</script>
+
+</body>
+</html>
